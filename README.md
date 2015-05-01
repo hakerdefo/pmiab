@@ -1,2 +1,6 @@
 # pmiab
-pmiab (Poor Man's Internet Advert Blocker) blocks ads &amp; malware systemwide.
+pmiab (Poor Man's Internet Advert Blocker) blocks ads and malware systemwide.
+
+
+### Men at work ...
+### Under construction ...
