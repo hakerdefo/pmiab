@@ -1,20 +1,20 @@
 # pmiab
 
-pmiab (Poor Man's Internet Ad Blocker) is a simple bash script that blocks ads and other unwanted nasty stuff and makes surfing the ocean of internet faster, better and safer experience. pmiab does this with the help of hosts file. Using hosts file to block ads has several distinct advantages over other ad blocking methods.
+pmiab (Poor Man's Internet Ad Blocker) is a simple bash script that blocks ads and other unwanted nasty stuff and makes surfing the ocean of Internet faster, better and safer experience. pmiab does this with the help of hosts file. Using hosts file to block ads has several distinct advantages over other ad-blocking methods.
 
 
 ### Advantages :
  - No need to install and run any other applications.
  - Saves CPU, RAM and bandwidth.
  - Blocks IP calls on any port.
- - Faster webpage loading.
+ - Faster web-page loading.
  - Enhances your privacy & security.
  - Hosts file can be edited in any text editor.
  - Works with any and every browser.
 
 
 ### How does pmiab work?
-pmiab downloads adblocking hosts files from the following four sources,
+pmiab downloads ad-blocking hosts files from the following four sources,
 
 1. [winhelp2002.mvps.org]
 2. [hosts-file.net]
@@ -32,7 +32,7 @@ Then pmiab does some bash magic,
  - Removes any comments on lines.
  - Cleans leftover trailing blanks.
  - Removes duplicate entries.
- - Creates an ultimate adblocking hosts file.
+ - Creates an ultimate ad-blocking hosts file.
 
 
 ### Installation :
@@ -49,11 +49,11 @@ $ sudo chmod a+x /usr/local/bin/pmiab
 
 ### Usage :
 
-Open terminal and rum 'pmiab'. That's all you have to do for now. pmiab will create a backup of original hosts file on the first run and save it read-only in your home directory with the name '.hosts-system'. Next pmiab will download four adblocking hosts files from the sources mentioned earlier and after removing crufts-duplicates it will save the ultimate adblocking hosts file in your home directory as '.hosts-block'. Now you have to copy the adblocking hosts file with the following command,
+Open terminal and rum 'pmiab'. That's all you have to do for now. pmiab will create a backup of original hosts file on the first run and save it read-only in your home directory with the name '.hosts-system'. Next pmiab will download four ad-blocking hosts files from the sources mentioned earlier and after removing cruft-duplicates, it will save the ultimate ad-blocking hosts file in your home directory as '.hosts-block'. Now you have to copy the ad-blocking hosts file as your system hosts file with the following command,
 ```sh
 $ sudo cp ~/.hosts-block /etc/hosts
 ```
-That's it. Restart your browser if it's running, clean browser's cache and enjoy a smooth, ad-free browsing.
+That's it. Restart your browser if it's running, clean browser's cache and enjoy a smoother, safer and ad-free browsing.
 
 
 ### Credits :
