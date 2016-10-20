@@ -4,6 +4,7 @@ pmiab (Poor Man's Internet Ad Blocker) is a simple bash script that blocks ads a
 
 
 ### Advantages :
+
  - No need to install and run any other applications.
  - Saves CPU, RAM and bandwidth.
  - Blocks IP calls on any port.
@@ -14,6 +15,7 @@ pmiab (Poor Man's Internet Ad Blocker) is a simple bash script that blocks ads a
 
 
 ### How does pmiab work?
+
 pmiab downloads ad-blocking hosts files from the following four sources,
 
 1. [winhelp2002.mvps.org]
@@ -37,26 +39,32 @@ Then pmiab does some bash magic,
 
 ### Installation :
 
-Installation is very simple. Download [pmiab-master] zip, extract it's contents and copy the file 'pmiab' to '/usr/local/bin/' directory,
+Installation is very simple. Download [pmiab-master] zip, extract its contents and copy the file 'pmiab' to '/usr/local/bin/' directory,
 ```sh
-$ sudo cp pmiab /usr/local/bin/
+sudo cp pmiab /usr/local/bin/
 ```
 And make it executable,
 ```sh
-$ sudo chmod a+x /usr/local/bin/pmiab
+sudo chmod a+x /usr/local/bin/pmiab
 ```
 
 
 ### Usage :
 
-Open terminal and rum 'pmiab'. That's all you have to do for now. pmiab will create a backup of original hosts file on the first run and save it read-only in your home directory with the name '.hosts-system'. Next pmiab will download four ad-blocking hosts files from the sources mentioned earlier and after removing cruft-duplicates, it will save the ultimate ad-blocking hosts file in your home directory as '.hosts-block'. Now you have to copy the ad-blocking hosts file as your system hosts file with the following command,
+Since pmiab deals with the hosts file it needs to be run with 'sudo'. Open terminal & run,
 ```sh
-$ sudo cp ~/.hosts-block /etc/hosts
+sudo pmiab
 ```
-That's it. Restart your browser if it's running, clean browser's cache and enjoy a smoother, safer and ad-free browsing.
+Or if you prefer 'su' over 'sudo',
+```sh
+su -c 'pmiab'
+```
+Then you can enable or disable advert blocking via a simple interactive menu of pmiab. Believe me it's very simple.
+Restart your browser if it's running, clean browser's cache and enjoy a smoother, safer and ad-free browsing.
 
 
 ### Credits :
+
  - Steve Riley : This script originally was a brainchild of Steve. Incredibly this was the first bash script he wrote.
  - Stuart Hanzlik : Stuarts articles on hosts file and it's usage as ad blocker provided some valuable information.
 
@@ -65,7 +73,6 @@ That's it. Restart your browser if it's running, clean browser's cache and enjoy
 
 [![Public Domain Mark](http://i.creativecommons.org/p/mark/1.0/88x31.png)](http://creativecommons.org/publicdomain/mark/1.0/)  
 This work (<span property="dct:title">pmiab</span>, by [<span property="dct:title">hakerdefo</span>](https://github.com/hakerdefo/pmiab)), identified by [<span property="dct:title">hakerdefo</span>](https://hakerdefo.blogspot.com), is free of known copyright restrictions.
-
 
 [winhelp2002.mvps.org]:http://winhelp2002.mvps.org
 [hosts-file.net]:http://hosts-file.net
