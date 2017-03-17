@@ -1,214 +1,223 @@
 #!/usr/bin/env bash
+########
 function byye (){
-    printf "\033c"
-    echo ""
-    { for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; }
-    echo ""
-    echo -e '\e[38;5;82m' "One man's advertising is another man's malware"
-    echo ""
-    { for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; }
-    echo ""
-    sleep 2
-    tput sgr0
-    printf "\033c"
-    exit 0
+printf "\033c"
+echo ""
+{ for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; }
+echo ""
+echo -e '\e[38;5;82m' "One man's advertising is another man's malware"
+echo ""
+{ for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; }
+echo ""
+sleep 1
+tput sgr0
+printf "\033c"
+exit 0
 }
+########
 function pm_unblock (){
-    pmcp=$(which cp)
-    pmrm=$(which rm)
-    if [ ! -f /etc/hosts-block ]; then
-    printf "\033c"
-    echo ""
-    { for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; }
-    echo ""
-    echo -e '\e[38;5;82m' "Ad-blocking hosts not in use! Nothing to unblock!"
-    echo ""
-    { for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; }
-    echo ""
-    echo ""
-    read -r -s -p $'Press Any Key To Return To Main Menu...\n' -n1
-    starrt
-    fi
-    printf "\033c"
-    echo ""
-    { for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; }
-    echo ""
-    echo -e '\e[38;5;82m' "Replacing the original hosts file..."
-    echo ""
-    { for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; }
-    echo ""
-    sleep 2
-    "$pmcp" /etc/hosts-system /etc/hosts
-    chmod 644 /etc/hosts
-    "$pmrm" -rf /etc/hosts-system
-    "$pmrm" -rf /etc/hosts-block
-    printf "\033c"
-    echo ""
-    { for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; }
-    echo ""
-    echo -e '\e[38;5;82m' "All done!!! Original system hosts file restored!!!"
-    echo ""
-    { for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; }
-    echo ""
-    echo ""
-    read -r -s -p $'Press Any Key To Return To Main Menu...\n' -n1
-    starrt
+pmcp=$(which cp)
+pmrm=$(which rm)
+if [ ! -f /etc/hosts-block ]; then
+printf "\033c"
+echo ""
+{ for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; }
+echo ""
+echo -e '\e[38;5;82m' "Ad-blocking hosts not in use! Nothing to unblock!"
+echo ""
+{ for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; }
+echo ""
+echo ""
+read -r -s -p $'Press Any Key To Return To Main Menu...\n' -n1
+starrt
+fi
+printf "\033c"
+echo ""
+{ for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; }
+echo ""
+echo -e '\e[38;5;82m' "Replacing the original hosts file..."
+echo ""
+{ for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; }
+echo ""
+sleep 1
+"$pmcp" /etc/hosts-system /etc/hosts
+chmod 644 /etc/hosts
+"$pmrm" -f /etc/hosts-system
+"$pmrm" -f /etc/hosts-block
+printf "\033c"
+echo ""
+{ for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; }
+echo ""
+echo -e '\e[38;5;82m' "All done!!! Original system hosts file restored!!!"
+echo ""
+{ for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; }
+echo ""
+echo ""
+read -r -s -p $'Press Any Key To Return To Main Menu...\n' -n1
+starrt
 }
+########
 function pm_block (){
-    pmcp=$(which cp)
-    hosts_cooking=$(mktemp)
-    hosts_cooked=$(mktemp)
-    datum=$(date +%d-%m-%Y:%H:%M:%S)
-    pmrm=$(which rm)
-    if [ ! -f /etc/hosts-system ]; then
-    "$pmcp" /etc/hosts /etc/hosts-system
-    chmod 444 /etc/hosts-system
-    fi
-    printf "\033c"
-    echo ""
-    { for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; }
-    echo ""
-    echo -e '\e[38;5;82m' "Downloading ad-blocking hosts files..."
-    echo ""
-    { for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; }
-    echo ""
-    wget -nv -O - "http://winhelp2002.mvps.org/hosts.txt" >> "$hosts_cooking" || { "$pmrm" -rf "$hosts_cooking"; "$pmrm" -rf "$hosts_cooked"; printf "\033c"; echo ""; for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; echo ""; echo -e '\e[38;5;82m' "OOPS!! Failed to download \"mvps\" hosts file!!"; echo -e '\e[38;5;82m' "Make sure your internet connection is active!"; echo -e '\e[38;5;82m' "If the problem persists you can report it at,"; echo -e '\e[38;5;82m' "GitHub repository of the project by creating,"; echo -e '\e[38;5;82m' "an issue there. Here is the link to the repo,"; echo ""; echo -e '\e[38;5;82m' "https://github.com/hakerdefo/pmiab"; echo ""; echo -e '\e[38;5;82m' "If you don't use GitHub you can report it by,"; echo -e '\e[38;5;82m' "emailing the author at the following address,"; echo ""; echo -e '\e[38;5;82m' "hakerdefo (at) gmail (dot) com"; echo ""; for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; echo ""; tput sgr0; exit 1; }
-    wget -nv -O - "http://hosts-file.net/ad_servers.asp" >> "$hosts_cooking" || { "$pmrm" -rf "$hosts_cooking"; "$pmrm" -rf "$hosts_cooked"; printf "\033c"; echo ""; for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; echo ""; echo -e '\e[38;5;82m' "OOPS!! Failed to download \"hpHo\" hosts file!!"; echo -e '\e[38;5;82m' "Make sure your internet connection is active!"; echo -e '\e[38;5;82m' "If the problem persists you can report it at,"; echo -e '\e[38;5;82m' "GitHub repository of the project by creating,"; echo -e '\e[38;5;82m' "an issue there. Here is the link to the repo,"; echo ""; echo -e '\e[38;5;82m' "https://github.com/hakerdefo/pmiab"; echo ""; echo -e '\e[38;5;82m' "If you don't use GitHub you can report it by,"; echo -e '\e[38;5;82m' "emailing the author at the following address,"; echo ""; echo -e '\e[38;5;82m' "hakerdefo (at) gmail (dot) com"; echo ""; for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; echo ""; tput sgr0; exit 1; }
-    wget -nv -O - "http://someonewhocares.org/hosts/hosts" >> "$hosts_cooking" || { "$pmrm" -rf "$hosts_cooking"; "$pmrm" -rf "$hosts_cooked"; printf "\033c"; echo ""; for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; echo ""; echo -e '\e[38;5;82m' "OOPS!! Failed to download \"sowc\" hosts file!!"; echo -e '\e[38;5;82m' "Make sure your internet connection is active!"; echo -e '\e[38;5;82m' "If the problem persists you can report it at,"; echo -e '\e[38;5;82m' "GitHub repository of the project by creating,"; echo -e '\e[38;5;82m' "an issue there. Here is the link to the repo,"; echo ""; echo -e '\e[38;5;82m' "https://github.com/hakerdefo/pmiab"; echo ""; echo -e '\e[38;5;82m' "If you don't use GitHub you can report it by,"; echo -e '\e[38;5;82m' "emailing the author at the following address,"; echo ""; echo -e '\e[38;5;82m' "hakerdefo (at) gmail (dot) com"; echo ""; for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; echo ""; tput sgr0; exit 1; }
-    wget -nv -O - "http://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&showintro=0&mimetype=plaintext" >> "$hosts_cooking" || { "$pmrm" -rf "$hosts_cooking"; "$pmrm" -rf "$hosts_cooked"; printf "\033c"; echo ""; for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; echo ""; echo -e '\e[38;5;82m' "OOPS!! Failed to download \"yoyo\" hosts file!!"; echo -e '\e[38;5;82m' "Make sure your internet connection is active!"; echo -e '\e[38;5;82m' "If the problem persists you can report it at,"; echo -e '\e[38;5;82m' "GitHub repository of the project by creating,"; echo -e '\e[38;5;82m' "an issue there. Here is the link to the repo,"; echo ""; echo -e '\e[38;5;82m' "https://github.com/hakerdefo/pmiab"; echo ""; echo -e '\e[38;5;82m' "If you don't use GitHub you can report it by,"; echo -e '\e[38;5;82m' "emailing the author at the following address,"; echo ""; echo -e '\e[38;5;82m' "hakerdefo (at) gmail (dot) com"; echo ""; for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; echo ""; tput sgr0; exit 1; }
-    printf "\033c"
-    echo ""
-    { for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; }
-    echo ""
-    echo -e '\e[38;5;82m' "Parsing, Cleaning, De-Duplicating, Sorting..."
-    echo ""
-    { for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; }
-    echo ""
-    sleep 2
-    sed -e 's/\r//' -e '/^127.0.0.1/!d' -e '/localhost/d' -e 's/127.0.0.1/0.0.0.0/' -e 's/ \+/\t/' -e 's/#.*$//' -e 's/[ \t]*$//' < "$hosts_cooking" | sort -u > "$hosts_cooked"
-    printf "\033c"
-    echo ""
-    { for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; }
-    echo ""
-    echo -e '\e[38;5;82m' "Merging ad-blocking hosts with original system hosts..."
-    echo ""
-    { for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; }
-    echo ""
-    sleep 2
-    echo -e "\n# Ad blocking list generated on $datum" | cat /etc/hosts-system - "$hosts_cooked" > /etc/hosts-block
-    printf "\033c"
-    echo ""
-    { for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; }
-    echo ""
-    echo -e '\e[38;5;82m' "Doing some clean-up..."
-    echo ""
-    { for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; }
-    echo ""
-    sleep 2
-    "$pmrm" -rf "$hosts_cooking"
-    "$pmrm" -rf "$hosts_cooked"
-    printf "\033c"
-    echo ""
-    { for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; }
-    echo ""
-    echo -e '\e[38;5;82m' "Installing pmiab generated hosts file..."
-    echo ""
-    { for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; }
-    echo ""
-    sleep 2
-    "$pmcp" /etc/hosts-block /etc/hosts
-    printf "\033c"
-    echo ""
-    { for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; }
-    echo ""
-    echo -e '\e[38;5;82m' "All done!!! Enjoy the internet without those pesky adverts!!!"
-    echo ""
-    { for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; }
-    echo ""
-    echo ""
-    read -r -s -p $'Press Any Key To Return To Main Menu\n' -n1
-    starrt
+pmcp=$(which cp)
+hosts_cooking=$(mktemp)
+hosts_cooked=$(mktemp)
+datum=$(date +%d-%m-%Y:%H:%M:%S)
+pmrm=$(which rm)
+if [ ! -f /etc/hosts-system ]; then
+"$pmcp" /etc/hosts /etc/hosts-system
+chmod 444 /etc/hosts-system
+fi
+printf "\033c"
+echo ""
+{ for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; }
+echo ""
+echo -e '\e[38;5;82m' "Downloading ad-blocking hosts files..."
+echo ""
+{ for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; }
+echo ""
+wget -nv -O - "http://winhelp2002.mvps.org/hosts.txt" >> "$hosts_cooking" || { "$pmrm" -f "$hosts_cooking"; "$pmrm" -f "$hosts_cooked"; printf "\033c"; echo ""; for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; echo ""; echo -e '\e[38;5;82m' "OOPS!! Failed to download \"mvps\" hosts file!!"; echo -e '\e[38;5;82m' "Make sure your internet connection is active!"; echo -e '\e[38;5;82m' "If the problem persists you can report it at,"; echo -e '\e[38;5;82m' "GitHub repository of the project by creating,"; echo -e '\e[38;5;82m' "an issue there. Here is the link to the repo,"; echo ""; echo -e '\e[38;5;82m' "https://github.com/hakerdefo/pmiab"; echo ""; echo -e '\e[38;5;82m' "If you don't use GitHub you can report it by,"; echo -e '\e[38;5;82m' "emailing the author at the following address,"; echo ""; echo -e '\e[38;5;82m' "hakerdefo (at) gmail (dot) com"; echo ""; for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; echo ""; tput sgr0; exit 1; }
+wget -nv -O - "http://hosts-file.net/ad_servers.asp" >> "$hosts_cooking" || { "$pmrm" -f "$hosts_cooking"; "$pmrm" -f "$hosts_cooked"; printf "\033c"; echo ""; for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; echo ""; echo -e '\e[38;5;82m' "OOPS!! Failed to download \"hpHo\" hosts file!!"; echo -e '\e[38;5;82m' "Make sure your internet connection is active!"; echo -e '\e[38;5;82m' "If the problem persists you can report it at,"; echo -e '\e[38;5;82m' "GitHub repository of the project by creating,"; echo -e '\e[38;5;82m' "an issue there. Here is the link to the repo,"; echo ""; echo -e '\e[38;5;82m' "https://github.com/hakerdefo/pmiab"; echo ""; echo -e '\e[38;5;82m' "If you don't use GitHub you can report it by,"; echo -e '\e[38;5;82m' "emailing the author at the following address,"; echo ""; echo -e '\e[38;5;82m' "hakerdefo (at) gmail (dot) com"; echo ""; for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; echo ""; tput sgr0; exit 1; }
+wget -nv -O - "http://someonewhocares.org/hosts/hosts" >> "$hosts_cooking" || { "$pmrm" -f "$hosts_cooking"; "$pmrm" -f "$hosts_cooked"; printf "\033c"; echo ""; for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; echo ""; echo -e '\e[38;5;82m' "OOPS!! Failed to download \"sowc\" hosts file!!"; echo -e '\e[38;5;82m' "Make sure your internet connection is active!"; echo -e '\e[38;5;82m' "If the problem persists you can report it at,"; echo -e '\e[38;5;82m' "GitHub repository of the project by creating,"; echo -e '\e[38;5;82m' "an issue there. Here is the link to the repo,"; echo ""; echo -e '\e[38;5;82m' "https://github.com/hakerdefo/pmiab"; echo ""; echo -e '\e[38;5;82m' "If you don't use GitHub you can report it by,"; echo -e '\e[38;5;82m' "emailing the author at the following address,"; echo ""; echo -e '\e[38;5;82m' "hakerdefo (at) gmail (dot) com"; echo ""; for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; echo ""; tput sgr0; exit 1; }
+wget -nv -O - "http://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&showintro=0&mimetype=plaintext" >> "$hosts_cooking" || { "$pmrm" -f "$hosts_cooking"; "$pmrm" -f "$hosts_cooked"; printf "\033c"; echo ""; for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; echo ""; echo -e '\e[38;5;82m' "OOPS!! Failed to download \"yoyo\" hosts file!!"; echo -e '\e[38;5;82m' "Make sure your internet connection is active!"; echo -e '\e[38;5;82m' "If the problem persists you can report it at,"; echo -e '\e[38;5;82m' "GitHub repository of the project by creating,"; echo -e '\e[38;5;82m' "an issue there. Here is the link to the repo,"; echo ""; echo -e '\e[38;5;82m' "https://github.com/hakerdefo/pmiab"; echo ""; echo -e '\e[38;5;82m' "If you don't use GitHub you can report it by,"; echo -e '\e[38;5;82m' "emailing the author at the following address,"; echo ""; echo -e '\e[38;5;82m' "hakerdefo (at) gmail (dot) com"; echo ""; for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; echo ""; tput sgr0; exit 1; }
+printf "\033c"
+echo ""
+{ for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; }
+echo ""
+echo -e '\e[38;5;82m' "Parsing, Cleaning, De-Duplicating, Sorting..."
+echo ""
+{ for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; }
+echo ""
+sleep 1
+sed -e 's/\r//' -e '/^127.0.0.1/!d' -e '/localhost/d' -e 's/127.0.0.1/0.0.0.0/' -e 's/ \+/\t/' -e 's/#.*$//' -e 's/[ \t]*$//' < "$hosts_cooking" | sort -u > "$hosts_cooked"
+printf "\033c"
+echo ""
+{ for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; }
+echo ""
+echo -e '\e[38;5;82m' "Merging ad-blocking hosts with original system hosts..."
+echo ""
+{ for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; }
+echo ""
+sleep 1
+echo -e "\n# Ad blocking list generated on $datum" | cat /etc/hosts-system - "$hosts_cooked" > /etc/hosts-block
+printf "\033c"
+echo ""
+{ for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; }
+echo ""
+echo -e '\e[38;5;82m' "Doing some clean-up..."
+echo ""
+{ for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; }
+echo ""
+sleep 1
+"$pmrm" -f "$hosts_cooking"
+"$pmrm" -f "$hosts_cooked"
+printf "\033c"
+echo ""
+{ for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; }
+echo ""
+echo -e '\e[38;5;82m' "Installing pmiab generated hosts file..."
+echo ""
+{ for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; }
+echo ""
+sleep 1
+"$pmcp" /etc/hosts-block /etc/hosts
+printf "\033c"
+echo ""
+{ for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; }
+echo ""
+echo -e '\e[38;5;82m' "All done!!! Enjoy the internet without those pesky adverts!!!"
+echo ""
+{ for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; }
+echo ""
+echo ""
+read -r -s -p $'Press Any Key To Return To Main Menu\n' -n1
+starrt
 }
-pm_netchk (){
-    wget --spider --user-agent="Mozilla/5.0 Gecko/20100101" --timeout=30 -q "www.google.com" -O /dev/null
-    RETVAL=$?
-    case "$RETVAL" in
-    0)
-    pm_block
-    ;;
-    *)
-    printf "\033c"
-    echo ""
-    { for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; }
-    echo ""
-    echo -e '\e[38;5;82m' "No active internet connection available!!"
-    echo -e '\e[38;5;82m' "Please check your internet connectivity!!"
-    echo -e '\e[38;5;82m' "Active internet connection is required to"
-    echo -e '\e[38;5;82m' "download necessary adblocking hosts files"
-    echo ""
-    echo ""
-    read -r -s -p $'Press Any Key To Return To Main Menu\n' -n1
-    starrt
-    ;;
-    esac
+########
+function pm_netchk (){
+wget --spider --user-agent="Mozilla/5.0 Gecko/20100101" --timeout=30 -q "www.google.com" -O /dev/null
+RETVAL=$?
+case "$RETVAL" in
+0)
+pm_block
+;;
+*)
+printf "\033c"
+echo ""
+{ for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; }
+echo ""
+echo -e '\e[38;5;82m' "No active internet connection available!!"
+echo -e '\e[38;5;82m' "Please check your internet connectivity!!"
+echo -e '\e[38;5;82m' "Active internet connection is required to"
+echo -e '\e[38;5;82m' "download necessary adblocking hosts files"
+echo ""
+echo ""
+read -r -s -p $'Press Any Key To Return To Main Menu\n' -n1
+starrt
+;;
+esac
 }
+########
 function starrt (){
-    if [ "$EUID" -ne 0 ]; then
-    printf "\033c"
-    echo ""
-    { for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; }
-    echo ""
-    echo -e '\e[38;5;82m' "You must run \"pmiab\" script using \"sudo\" or as the root user."
-    echo -e '\e[38;5;82m' "Hint : \"sudo pmiab\" or \"su -c 'pmiab'\""
-    echo ""
-    { for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; }
-    echo ""
-    tput sgr0
-    exit 1
-    fi
-    printf "\033c"
-    { for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; }
-    echo ""
-    echo -e '\e[38;5;82m' "pmiab - (Poor Man's Internet Ad Blocker) blocks ads system-wide"
-    echo ""
-    { for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; }
-    echo ""
-    echo -e '\e[38;5;82m'"01 Block Internet Adverts"
-    echo -e '\e[38;5;82m'"02 Unblock Internet Adverts"
-    echo -e '\e[38;5;82m'"03 Quit pmiab"
-    echo -e ""
-    echo -e '\e[38;5;82m' "Enter Your Choice: "
-    echo ""
-    read -r Choice
-    case $Choice in
-    01 | 1)
-    pm_netchk
-    ;;
-    02 | 2)
-    pm_unblock
-    ;;
-    03 | 3)
-    byye
-    ;;
-    *)
-    printf "\033c"
-    echo -e ""
-    echo -e ""
-    echo -e '\e[38;5;82m' "\"$Choice\" Is An Invalid Option!"
-    echo -e ""
-    echo -e '\e[38;5;82m' "Correct Options To Choose From Are 1-2-3"
-    echo -e ""
-    echo -e '\e[38;5;82m' "To block internet adverts press \"1\" & hit \"Enter\" key"
-    echo -e '\e[38;5;82m' "To restore original hosts press \"2\" & hit \"Enter\" key"
-    echo -e '\e[38;5;82m' "To exit from pmiab script press \"3\" & hit \"Enter\" key"
-    echo -e '\e[38;5;82m' "Got It?!? Ready To Give It Another Go?!?"
-    echo -e ""
-    read -r -s -p $'Press Any Key To Try Again...\n' -n1
-    starrt
-    ;;
-    esac
+if [ "$EUID" -ne 0 ]; then
+printf "\033c"
+echo ""
+{ for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; }
+echo ""
+echo -e '\e[38;5;82m' "You must run \"pmiab\" script using \"sudo\" or as the root user."
+echo -e '\e[38;5;82m' "Hint : \"sudo pmiab\" or \"su -c 'pmiab'\""
+echo ""
+{ for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; }
+echo ""
+tput sgr0
+exit 1
+fi
+printf "\033c"
+echo ""
+{ for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; }
+echo ""
+echo -e '\e[38;5;82m' "pmiab - (Poor Man's Internet Ad Blocker) blocks ads system-wide"
+echo ""
+{ for i in {16..51} {51..16}; do echo -en "\e[38;5;${i}m#\e[0m"; done; echo; }
+echo ""
+echo ""
+echo -e '\e[38;5;82m' "01 Block Internet Adverts"
+echo -e '\e[38;5;82m' "02 Unblock Internet Adverts"
+echo -e '\e[38;5;82m' "03 Quit pmiab"
+echo -e ""
+echo -e ""
+echo -e '\e[38;5;82m' "Enter Your Choice: "
+echo -e ""
+read -r Choice
+case $Choice in
+01 | 1)
+pm_netchk
+;;
+02 | 2)
+pm_unblock
+;;
+03 | 3)
+byye
+;;
+*)
+printf "\033c"
+echo -e ""
+echo -e ""
+echo -e '\e[38;5;82m' "\"$Choice\" Is An Invalid Option!"
+echo -e ""
+echo -e '\e[38;5;82m' "Correct Options To Choose From Are 1-2-3"
+echo -e ""
+echo -e '\e[38;5;82m' "To block internet adverts press \"1\" & hit \"Enter\" key"
+echo -e '\e[38;5;82m' "To restore original hosts press \"2\" & hit \"Enter\" key"
+echo -e '\e[38;5;82m' "To exit from pmiab script press \"3\" & hit \"Enter\" key"
+echo -e '\e[38;5;82m' "Got It?!? Ready To Give It Another Go?!?"
+echo -e ""
+read -r -s -p $'Press Any Key To Try Again...\n' -n1
+starrt
+;;
+esac
 }
+########
 while :
-    do
+do
 starrt
 done
