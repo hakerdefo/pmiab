@@ -1,6 +1,6 @@
 # pmiab
 
-pmiab (Poor Man's Internet Ad Blocker) is a simple bash script that blocks ads and other unwanted nasty stuff and makes surfing the ocean of Internet faster, better and safer experience. pmiab does this with the help of hosts file. Using hosts file to block ads has several distinct advantages over other ad-blocking methods.
+**pmiab** (Poor Man's Internet Ad Blocker) is a simple bash script that blocks ads and other unwanted nasty stuff and makes surfing the ocean of Internet faster, better and safer experience. **pmiab** does this with the help of hosts file. Using hosts file to block ads has several distinct advantages over other ad-blocking methods.
 
 
 ### Advantages :
@@ -16,14 +16,14 @@ pmiab (Poor Man's Internet Ad Blocker) is a simple bash script that blocks ads a
 
 ### How does pmiab work?
 
-pmiab downloads ad-blocking hosts files from the following four sources,
+**pmiab** downloads ad-blocking hosts files from the following four sources,
 
 1. [winhelp2002.mvps.org]
 2. [hosts-file.net]
 3. [someonewhocares.org]
 4. [pgl.yoyo.org]
 
-Then pmiab does some bash magic,
+Then **pmiab** does some bash magic,
 
  - Creates a backup of original hosts file and sets it to read-only.
  - Removes MS-DOS carriage returns.
@@ -39,34 +39,33 @@ Then pmiab does some bash magic,
 
 ### Installation :
 
-Installation is very simple. Download [pmiab-master] zip, extract its contents and copy the file 'pmiab' to '/usr/local/bin/' directory,
+Installation is very simple. Download **[pmiab-master]** zip, extract its contents and copy the file **pmiab** to **/usr/local/bin/** directory,
 ```sh
 sudo cp pmiab /usr/local/bin/
 ```
 And make it executable,
 ```sh
-sudo chmod a+x /usr/local/bin/pmiab
+sudo chmod 755 /usr/local/bin/pmiab
 ```
 
 
 ### Usage :
 
-Since pmiab deals with the hosts file it needs to be run with 'sudo'. Open terminal & run,
+Since **pmiab** deals with the hosts file it needs to be run with **sudo**. Open terminal & run,
 ```sh
 sudo pmiab
 ```
-Or if you prefer 'su' over 'sudo',
+Or if you prefer **su** over **sudo**,
 ```sh
-su -c 'pmiab'
+su -c pmiab
 ```
-Then you can enable or disable advert blocking via a simple interactive menu of pmiab. Believe me it's very simple.
-Restart your browser if it's running, clean browser's cache and enjoy a smoother, safer and ad-free browsing.
+Then you can enable or disable advert blocking via a simple interactive menu of **pmiab**. To block the ads, select **Block Internet Adverts** option from the menu. Restart your browser if it is running, clean browser's cache and enjoy a smoother, safer and ad-free browsing. It is advised that you update the ad-blocking hosts file atleast once in a week. To update the ad-blocking hosts, you need to simply select **Block Internet Adverts** option from the menu.
 
 
 ### Credits :
 
- - Steve Riley : This script originally was a brainchild of Steve. Incredibly this was the first bash script he wrote.
- - Stuart Hanzlik : Stuarts articles on hosts file and it's usage as ad blocker provided some valuable information.
+ - _Steve Riley : This script originally was a brainchild of Steve. Incredibly this was the first bash script he wrote._
+ - _Stuart Hanzlik : Stuarts articles on hosts file and its usage as ad blocker provided some valuable information._
 
 
 ### License :
