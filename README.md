@@ -16,12 +16,15 @@
 
 ### How does pmiab work?
 
-**pmiab** downloads ad-blocking hosts files from the following four sources,
+**pmiab** downloads ad-blocking hosts files from the following sources,
 
-1. [winhelp2002.mvps.org]
-2. [hosts-file.net]
-3. [someonewhocares.org]
-4. [pgl.yoyo.org]
+1. [MPVS hosts file]
+2. [Dan Pollock's hosts file]
+3. [yoyo.org hosts file]
+4. [Badd Boyz hosts file]
+5. [Steven Black's hosts file]
+6. [ABUSE.ch hosts file]
+7. [Malware Domain List hosts file]
 
 Then **pmiab** does some bash magic,
 
@@ -73,8 +76,11 @@ Then you can enable or disable advert blocking via a simple interactive menu of 
 [![Public Domain Mark](http://i.creativecommons.org/p/mark/1.0/88x31.png)](http://creativecommons.org/publicdomain/mark/1.0/)  
 This work (<span property="dct:title">pmiab</span>, by [<span property="dct:title">hakerdefo</span>](https://github.com/hakerdefo/pmiab)), identified by [<span property="dct:title">hakerdefo</span>](https://hakerdefo.blogspot.com), is free of known copyright restrictions.
 
-[winhelp2002.mvps.org]:http://winhelp2002.mvps.org
-[hosts-file.net]:http://hosts-file.net
-[someonewhocares.org]:http://someonewhocares.org/hosts/
-[pgl.yoyo.org]:http://pgl.yoyo.org/adservers/
+[MPVS hosts file]:http://winhelp2002.mvps.org/hosts.htm
+[Dan Pollock's hosts file]:https://someonewhocares.org/hosts/
+[yoyo.org hosts file]:https://pgl.yoyo.org/as/
+[Badd Boyz hosts file]:https://github.com/mitchellkrogza/Badd-Boyz-Hosts
+[Steven Black's hosts file]:https://raw.githubusercontent.com/StevenBlack/hosts/master/data/StevenBlack/hosts
+[ABUSE.ch hosts file]:https://abuse.ch/
+[Malware Domain List hosts file]:https://www.malwaredomainlist.com/
 [pmiab-master]:https://github.com/hakerdefo/pmiab/archive/master.zip
