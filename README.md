@@ -24,7 +24,7 @@
 4. [Badd Boyz hosts file]
 5. [Steven Black's hosts file]
 6. [ABUSE.ch hosts file]
-7. [Malware Domain List hosts file]
+7. [AdAway hosts file]
 
 Then **pmiab** does some bash magic,
 
@@ -82,5 +82,5 @@ This work (<span property="dct:title">pmiab</span>, by [<span property="dct:titl
 [Badd Boyz hosts file]:https://github.com/mitchellkrogza/Badd-Boyz-Hosts
 [Steven Black's hosts file]:https://raw.githubusercontent.com/StevenBlack/hosts/master/data/StevenBlack/hosts
 [ABUSE.ch hosts file]:https://abuse.ch/
-[Malware Domain List hosts file]:https://www.malwaredomainlist.com/
+[AdAway hosts file]:https://github.com/AdAway/AdAway
 [pmiab-master]:https://github.com/hakerdefo/pmiab/archive/master.zip
